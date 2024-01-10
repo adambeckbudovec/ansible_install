@@ -6,14 +6,16 @@
 
 ###
 ## Prerequisistes 
->It is important that the user is aware the username for the SSH they wil be using for the ansible deployment
+> Must have sudo priveleges
+> Must have access to main ansible Node/Master Node
+> It is important that the user is using the username for the SSH they wil be using for the ansible deployment
 
 ## Setup
 1. Setup user account for ansible
 2. Create Password unique to the ansible user account
 ###
 > [!Important]
-> Make sure to change the USER_NAME to the desired username.
+> Make sure to change the <mark>USER_NAME</mark> to the desired username.
 > Make sure to change the USER_NAME to the desired.
 > This username and password is recommended to be unique to the ansible user.
 ###
@@ -21,15 +23,10 @@
 > Having the default user/root account as the ansible account with the same password is not recommended and can lead to security issues.
 ###
 ```ruby
-require 'redcarpet'
 adduser USER_NAME
 passwd USER_NAME
-cat << EOF >/etc/sudoers.d/USER_NAME <mark>$USER_NAME</mark> ALL = (root) NOPASSWD:ALL EOF
-chmod 0440 /etc/sudoers.d/<mark>USER_NAME</mark>
+cat << EOF >/etc/sudoers.d/USER_NAME $USER_NAME ALL = (root) NOPASSWD:ALL EOF
+chmod 0440 /etc/sudoers.d/USER_NAME
 ```
 ###
-```ruby
-require 'redcarpet'
-markdown = Redcarpet.new("Hello World!")
-puts markdown.to_html
-```
+
