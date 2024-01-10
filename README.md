@@ -63,6 +63,8 @@ bash ansibleInstall.sh
 ![](https://media1.giphy.com/media/13CoXDiaCcCoyk/giphy.gif?cid=ecf05e47v1guwyces2xoma74yy8d4fhn74ej0mfpq59zwpee&ep=v1_gifs_search&rid=giphy.gif&ct=g)
 ###
 Go into /etc/ansible/hosts
+`cd /etc/ansible`
+`nano hosts`
 Change the list to reflect what you want to be done
 > Here is an example of how the hosts file should look
 ```
@@ -100,3 +102,7 @@ test:
     bar.example.com:
     three.example.com:
 ```
+# Next is the playbook
+###
+Accessing **playnook.yml**
+`nano playbook.yml`
