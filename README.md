@@ -114,6 +114,10 @@ Accessing **playnook.yml**
 ![](https://media1.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif?cid=ecf05e4780onlcq49g25ygnwwu18rr0rx8lotdukucxsvmog&ep=v1_gifs_search&rid=giphy.gif&ct=g)
 ###
 <details>
-
+  
+**This is the configuration puppet server, which is going to become the Master Node and used to propogate accross the network.**
+  ###
+`apt-get install puppetserver`
+`systemctl start puppetserver`
   
 </details>
