@@ -2,7 +2,7 @@
 ![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 ###
 
-*This is the configuration ofthe fisrt ansible node, which is going to become the Master Node and used to propogate accross the network.*
+*This is the configuration ofthe first ansible node, which is going to become the Master Node and used to propogate accross the network.*
 
 ###
 ## Prerequisistes 
