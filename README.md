@@ -1,4 +1,4 @@
-# Ansible Automation (In Progress)
+# Ansible Installation via bash
 ![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 ###
 
@@ -57,3 +57,42 @@ wget https://github.com/adambeckbudovec/ansible_config/blob/5cee20ec0f5e0524c9fd
 
 bash ansibleInstall.sh
 ````
+# YAML configuration and Confgiuration of Automated Initial server
+Go into /etc/ansible/hosts
+Change the list to reflect what you want to be done
+> Here is an example of how the hosts file should look
+```
+ungrouped:
+  hosts:
+    mail.example.com:
+routers:
+  hosts:
+    router1.domain.com
+webservers:
+  hosts:
+    foo.example.com:
+    bar.example.com:
+dbservers:
+  hosts:
+    one.example.com:
+    two.example.com:
+    three.example.com:
+east:
+  hosts:
+    foo.example.com:
+    one.example.com:
+    two.example.com:
+west:
+  hosts:
+    bar.example.com:
+    three.example.com:
+prod:
+  hosts:
+    foo.example.com:
+    one.example.com:
+    two.example.com:
+test:
+  hosts:
+    bar.example.com:
+    three.example.com:
+```
