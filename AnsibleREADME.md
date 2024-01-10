@@ -1,4 +1,4 @@
-# Ansible Installation via bash
+# Ansible  Installation via bash
 ![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 ###
 
