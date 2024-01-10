@@ -52,12 +52,16 @@ cat << EOF >/etc/sudoers.d/USER_NAME $USER_NAME ALL = (root) NOPASSWD:ALL EOF   
 This configuration will perform least privelege with this account and allow for the user to no longer need to use password to access via SSH
 ###
 And now you can begin the ansible installion section using the following link
+Be sure to have wget, git clone or something
 ````
 wget https://github.com/adambeckbudovec/ansible_config/blob/5cee20ec0f5e0524c9fd8063672d7d09fdede845/ansibleInstall.sh
+git clone https://github.com/adambeckbudovec/ansible_config/blob/5cee20ec0f5e0524c9fd8063672d7d09fdede845/ansibleInstall.sh
 
 bash ansibleInstall.sh
 ````
 # YAML configuration and Confgiuration of Automated Initial server
+![](https://media1.giphy.com/media/13CoXDiaCcCoyk/giphy.gif?cid=ecf05e47v1guwyces2xoma74yy8d4fhn74ej0mfpq59zwpee&ep=v1_gifs_search&rid=giphy.gif&ct=g)
+###
 Go into /etc/ansible/hosts
 Change the list to reflect what you want to be done
 > Here is an example of how the hosts file should look
