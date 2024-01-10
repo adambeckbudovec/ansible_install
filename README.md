@@ -119,5 +119,33 @@ Accessing **playnook.yml**
   ###
 `apt-get install puppetserver`
 `systemctl start puppetserver`
+
+Setup user account for puppet
+Create Password unique to the puppet user account
+[!Important] Make sure to change the USER_NAME to the desired username. Make sure to change the USER_NAME to the desired. This username and password is recommended to be unique to the ansible user.
+
+[!Warning] Having the default user/root account as the ansible account with the same password is not recommended and can lead to security issues. Do not leave root as the main usage account Try not to re-use passwords
+```
+ssh-keygen -t rsa USER_NAME
+ssh-copy-id -i my_id.pub root@remote
+This will create an SSH key for the server that you will be connecting to, next you will need to make an account to execute Least Privelege
+
+adduser USER_NAME
+passwd USER_NAME
+usermod -aG sudo USER_NAME
+If there is a firewall make sure to add ssh into the rules
+```
+If using ufw
+```
+ufw allow ssh
+ufw enable
+ufw status
+Test the connection using ssh USER_NAME@remote_ip_address Checking to make sure that your new account works and has ssh priveleges
+
+cat << EOF >/etc/sudoers.d/USER_NAME $USER_NAME ALL = (root) NOPASSWD:ALL EOF    chmod 0440 /etc/sudoers.d/USER_NAME
+```
+This configuration will perform least privelege with this account and allow for the user to no longer need to use password to access via SSH
+
+And now you can begin the ansible installion section using the following link Be sure to have wget, git clone or something
   
 </details>
