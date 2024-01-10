@@ -20,9 +20,16 @@
 > [!Warning]
 > Having the default user/root account as the ansible account with the same password is not recommended and can lead to security issues.
 ###
-```
+```ruby
+require 'redcarpet'
 adduser USER_NAME
-
 passwd USER_NAME
+cat << EOF >/etc/sudoers.d/USER_NAME <mark>$USER_NAME</mark> ALL = (root) NOPASSWD:ALL EOF
+chmod 0440 /etc/sudoers.d/<mark>USER_NAME</mark>
 ```
 ###
+```ruby
+require 'redcarpet'
+markdown = Redcarpet.new("Hello World!")
+puts markdown.to_html
+```
