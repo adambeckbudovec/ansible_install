@@ -21,16 +21,11 @@ if [[ "$unamestr" == 'Linux' || 'ubuntu' ]]; then
    sudo apt install software-properties-common -y 
    sudo add-apt-repository --yes --update ppa:ansible/ansible -y
    echo "Installing aptitude for ansible"
-   sudo apt-get install aptitude -y
- 
-##Change the username and remote address, otherwise is will use the current user and use str remote for addressing
-cat ~/.ssh/id_rsa.pub | ssh user@remote "mkdir /home/user/somedir/.ssh; \
-cat >> /home/user/somedir/.ssh/authorized_keys; touch hello; mkdir /test/morning; \
-cp hello /test/morning"   
-
-   ##echo "Installing ansible"
-   ##sudo apt install ansible -y
-   ##echo "ansible is installed"
+   sudo apt-get install aptitude -y
+   echo "Installing ansible"
+   sudo apt install ansible -y
+   echo "ansible is installed"
+   echo "Remaining actions can be completed through yaml"
    
 elif [[ "$unamestr" == 'FreeBSD' ]]; then
    platform='freebsd'
