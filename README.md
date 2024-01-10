@@ -1,6 +1,7 @@
-# Ansible  Installation via bash
+# Ansible  Installation
 ![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 ###
+<details>
 
 *This is the configuration ofthe first ansible node, which is going to become the Master Node and used to propogate accross the network.*
 
@@ -59,7 +60,8 @@ git clone https://github.com/adambeckbudovec/ansible_config/blob/5cee20ec0f5e052
 
 bash ansibleInstall.sh
 ````
-# YAML configuration and Confgiuration of Automated Initial server
+YAML configuration and Confgiuration of Automated Initial server
+###
 ![](https://media1.giphy.com/media/13CoXDiaCcCoyk/giphy.gif?cid=ecf05e47v1guwyces2xoma74yy8d4fhn74ej0mfpq59zwpee&ep=v1_gifs_search&rid=giphy.gif&ct=g)
 ###
 Go into /etc/ansible/hosts
@@ -106,3 +108,12 @@ test:
 ###
 Accessing **playnook.yml**
 `nano playbook.yml`
+</details>
+
+# Puppet Installation
+![](https://media1.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif?cid=ecf05e4780onlcq49g25ygnwwu18rr0rx8lotdukucxsvmog&ep=v1_gifs_search&rid=giphy.gif&ct=g)
+###
+<details>
+
+  
+</details>
