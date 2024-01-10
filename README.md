@@ -13,15 +13,16 @@
 2. Create Password unique to the ansible user account
 ###
 > [!Important]
-> Make sure to change the USER_NAME to the desired username
-> Make sure to change the USER_NAME to the desired
+> Make sure to change the USER_NAME to the desired username.
+> Make sure to change the USER_NAME to the desired.
+> This username and password is recommended to be unique to the ansible user.
+###
+> [!Warning]
+> Having the default user/root account as the ansible account with the same password is not recommended and can lead to security issues.
 ###
 ```
 adduser USER_NAME
 
 passwd USER_NAME
-
-cat << EOF >/etc/sudoers.d/USER_NAME
-$USER_NAME ALL = (root) NOPASSWD:ALL
-EOF
 ```
+###
