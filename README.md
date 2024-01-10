@@ -44,11 +44,16 @@ If there is a firewall make sure to add ssh into the rules
     ufw status
     ```
 Test the connection using ssh
-`USER_NAME@remote`
+`USER_NAME@remote_ip_address`
 Checking to make sure that your new account works and has ssh priveleges
 ```
 cat << EOF >/etc/sudoers.d/USER_NAME $USER_NAME ALL = (root) NOPASSWD:ALL EOF    chmod 0440 /etc/sudoers.d/USER_NAME
 ```
 This configuration will perform least privelege with this account and allow for the user to no longer need to use password to access via SSH
 ###
+And now you can begin the ansible installion section using the following link
+````
+wget https://github.com/adambeckbudovec/ansible_config/blob/5cee20ec0f5e0524c9fd8063672d7d09fdede845/ansibleInstall.sh
 
+bash ansibleInstall.sh
+````
