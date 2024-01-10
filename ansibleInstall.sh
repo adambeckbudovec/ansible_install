@@ -25,6 +25,7 @@ if [[ "$unamestr" == 'Linux' || 'ubuntu' ]]; then
    echo "Installing ansible"
    sudo apt install ansible -y
    echo "ansible is installed"
+   ansible --version
    echo "Remaining actions can be completed through yaml"
    
 elif [[ "$unamestr" == 'FreeBSD' ]]; then
