@@ -1,5 +1,3 @@
-Certainly! Here are detailed instructions for installing Ansible on a Linux system. The instructions cover prerequisites and the Ansible installation process.
-
 ### Prerequisites:
 
 #### 1. Operating System:
