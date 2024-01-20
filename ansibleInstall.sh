@@ -1,34 +1,42 @@
-#!/bin/shell
-cd ~
-echo $HOME
-echo $whoami
-##Ensure that the user has the privileges to install programs and if this is the same user specific to ansible
+#!/bin/bash
 
-echo "Checking Operating System"
+# Check if the script is run as root
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root or with sudo."
+    exit 1
+fi
 
-platform='unknown'
+# Detect the operating system
+if [ -f /etc/os-release ]; then
+    source /etc/os-release
+    os=$ID
+else
+    echo "Unsupported operating system. Please install Ansible manually."
+    exit 1
+fi
 
-unamestr=$(uname)
+# Install Ansible based on the operating system
+case $os in
+    "ubuntu" | "debian")
+        apt update
+        apt install -y software-properties-common
+        apt-add-repository --yes --update ppa:ansible/ansible
+        apt install -y ansible
+        ;;
+    "centos" | "rhel" | "fedora")
+        yum install -y epel-release
+        yum install -y ansible
+        ;;
+    *)
+        echo "Unsupported operating system. Please install Ansible manually."
+        exit 1
+        ;;
+esac
 
-if [[ "$unamestr" == 'Linux' || 'ubuntu' ]]; then
-   platform='linux'
-   echo "LINUX"
-   sudo apt-get update && sudo apt-get upgrade -y
-   echo "System is up to date"
-   echo "Installing Python3"
-   sudo apt-get install python3 -y
-   echo "Installing ansible repositories"
-   sudo apt install software-properties-common -y 
-   sudo add-apt-repository --yes --update ppa:ansible/ansible -y
-   echo "Installing aptitude for ansible"
-   sudo apt-get install aptitude -y
-   echo "Installing ansible"
-   sudo apt install ansible -y
-   echo "ansible is installed"
-   ansible --version
-   echo "Remaining actions can be completed through yaml"
-   
-elif [[ "$unamestr" == 'FreeBSD' ]]; then
-   platform='freebsd'
-   echo "FreeBSD"
+# Check if Ansible installation was successful
+if command -v ansible &> /dev/null; then
+    echo "Ansible has been successfully installed."
+else
+    echo "Failed to install Ansible. Please check for errors."
+    exit 1
 fi
