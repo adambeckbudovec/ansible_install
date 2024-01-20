@@ -1,7 +1,7 @@
 # Ansible  Installation
 ![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 ###
-<details>
+
 
 *This is the configuration ofthe first ansible node, which is going to become the Master Node and used to propogate accross the network.*
 
@@ -108,4 +108,3 @@ test:
 ###
 Accessing **playnook.yml**
 `nano playbook.yml`
-</details>
