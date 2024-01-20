@@ -122,6 +122,7 @@ This command sends a ping to all hosts in the inventory. If everything is set up
 
 Congratulations! You've successfully installed and configured Ansible on your Linux control node. You can now proceed to use Ansible for configuration management, automation, and orchestration tasks.
 
+###
 Ansible Galaxy is a platform for sharing, discovering, and managing Ansible roles. Roles are pre-packaged collections of variables, tasks, and handlers that can be reused across multiple Ansible projects. Below are detailed instructions for using Ansible Galaxy to manage roles.
 
 ### Installing Ansible Galaxy:
