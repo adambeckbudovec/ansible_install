@@ -104,7 +104,3 @@ test:
     bar.example.com:
     three.example.com:
 ```
-# Next is the playbook
-###
-Accessing **playnook.yml**
-`nano playbook.yml`
