@@ -1,106 +1,125 @@
-# Ansible  Installation
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
-###
+Certainly! Here are detailed instructions for installing Ansible on a Linux system. The instructions cover prerequisites and the Ansible installation process.
 
+### Prerequisites:
 
-*This is the configuration ofthe first ansible node, which is going to become the Master Node and used to propogate accross the network.*
+#### 1. Operating System:
 
-###
-## Prerequisistes 
-> Must have sudo priveleges
-> Must have access to main ansible Node/Master Node
-> It is important that the user is using the username for the SSH they wil be using for the ansible deployment
+Ansible supports a variety of Linux distributions. Commonly used distributions include Ubuntu, Debian, CentOS, Red Hat Enterprise Linux (RHEL), and others. Ensure that your system is running a supported Linux distribution.
 
-## Setup
-1. Setup user account for ansible
-2. Create Password unique to the ansible user account
-###
-> [!Important]
-> Make sure to change the <code style="color: red">***USER_NAME***</code> to the desired username.
-> Make sure to change the <code style="color: red">***USER_NAME***</code> to the desired.
-> This username and password is recommended to be unique to the ansible user.
-###
-> [!Warning]
-> Having the default user/root account as the ansible account with the same password is not recommended and can lead to security issues.
-> Do not leave root as the main usage account
-> Try not to re-use passwords
-###
-```ruby
-ssh-keygen -t rsa USER_NAME
-ssh-copy-id -i my_id.pub root@remote
+#### 2. Python:
+
+Ansible requires Python to be installed on the control node. Most Linux distributions come with Python pre-installed. Ensure that Python is installed and is at least version 2.7 or 3.5 and above.
+
+Check the installed Python version:
+
+```bash
+python --version
 ```
-This will create an SSH key for the server that you will be connecting to, next you will need to make an account to execute Least Privelege
-###
-```ruby
-adduser USER_NAME
-passwd USER_NAME
-usermod -aG sudo USER_NAME
-```
-###
-If there is a firewall make sure to add ssh into the rules
-  - If using ufw
-    ```ruby
-    ufw allow ssh
-    ufw enable
-    ufw status
-    ```
-Test the connection using ssh
-`USER_NAME@remote_ip_address`
-Checking to make sure that your new account works and has ssh priveleges
-```ruby
-cat << EOF >/etc/sudoers.d/USER_NAME $USER_NAME ALL = (root) NOPASSWD:ALL EOF    chmod 0440 /etc/sudoers.d/USER_NAME
-```
-This configuration will perform least privelege with this account and allow for the user to no longer need to use password to access via SSH
-###
-And now you can begin the ansible installion section using the following link
-Be sure to have wget, git clone or something
-````ruby
-wget https://github.com/adambeckbudovec/ansible_config/blob/5cee20ec0f5e0524c9fd8063672d7d09fdede845/ansibleInstall.sh
-git clone https://github.com/adambeckbudovec/ansible_config/blob/5cee20ec0f5e0524c9fd8063672d7d09fdede845/ansibleInstall.sh
 
-bash ansibleInstall.sh
-````
-YAML configuration and Confgiuration of Automated Initial server
-###
-![](https://media1.giphy.com/media/13CoXDiaCcCoyk/giphy.gif?cid=ecf05e47v1guwyces2xoma74yy8d4fhn74ej0mfpq59zwpee&ep=v1_gifs_search&rid=giphy.gif&ct=g)
-###
-Go into /etc/ansible/hosts
-`cd /etc/ansible`
-`nano hosts`
-Change the list to reflect what you want to be done
-> Here is an example of how the hosts file should look
-```ruby
-ungrouped:
-  hosts:
-    mail.example.com:
-routers:
-  hosts:
-    router1.domain.com
-webservers:
-  hosts:
-    foo.example.com:
-    bar.example.com:
-dbservers:
-  hosts:
-    one.example.com:
-    two.example.com:
-    three.example.com:
-east:
-  hosts:
-    foo.example.com:
-    one.example.com:
-    two.example.com:
-west:
-  hosts:
-    bar.example.com:
-    three.example.com:
-prod:
-  hosts:
-    foo.example.com:
-    one.example.com:
-    two.example.com:
-test:
-  hosts:
-    bar.example.com:
-    three.example.com:
+Ensure that the Python version meets the requirements.
+
+#### 3. SSH Keys:
+
+Ansible uses SSH to communicate with remote hosts. Ensure that SSH is installed, and you have SSH keys set up for passwordless authentication between the control node and target hosts.
+
+Generate SSH keys if not already done:
+
+```bash
+ssh-keygen -t rsa -b 2048
 ```
+
+Copy the public key to the remote hosts:
+
+```bash
+ssh-copy-id user@remote_host
+```
+
+#### 4. Control Node Configuration:
+
+Ensure that your control node has a valid hostname and is resolvable through DNS or your system's `/etc/hosts` file.
+
+Edit the `/etc/hostname` file and set your hostname:
+
+```bash
+sudo nano /etc/hostname
+```
+
+Edit the `/etc/hosts` file and add an entry for your hostname:
+
+```bash
+sudo nano /etc/hosts
+```
+
+Example entry:
+
+```plaintext
+127.0.0.1   localhost
+127.0.1.1   your_hostname
+```
+
+### Ansible Installation:
+
+#### 1. Package Manager Installation:
+
+Install Ansible using the package manager of your Linux distribution.
+
+- **Ubuntu/Debian:**
+
+  ```bash
+  sudo apt update
+  sudo apt install -y ansible
+  ```
+
+- **CentOS/RHEL:**
+
+  ```bash
+  sudo yum install -y ansible
+  ```
+
+#### 2. Verify Ansible Installation:
+
+Check if Ansible is installed successfully:
+
+```bash
+ansible --version
+```
+
+This command should display the installed Ansible version.
+
+#### 3. Configuration:
+
+Ansible uses a configuration file located at `/etc/ansible/ansible.cfg`. Most installations do not require additional configuration, but you can edit this file if needed.
+
+```bash
+sudo nano /etc/ansible/ansible.cfg
+```
+
+#### 4. Inventory File:
+
+Ansible uses an inventory file to specify the hosts it manages. By default, the inventory file is located at `/etc/ansible/hosts`.
+
+Edit the inventory file to include your target hosts:
+
+```bash
+sudo nano /etc/ansible/hosts
+```
+
+Example entry:
+
+```plaintext
+[web_servers]
+web1 ansible_host=192.168.1.101
+web2 ansible_host=192.168.1.102
+```
+
+### Testing Ansible:
+
+Run a simple Ansible command to test the configuration:
+
+```bash
+ansible all -m ping
+```
+
+This command sends a ping to all hosts in the inventory. If everything is set up correctly, you should see a "pong" response from each host.
+
+Congratulations! You've successfully installed and configured Ansible on your Linux control node. You can now proceed to use Ansible for configuration management, automation, and orchestration tasks.
